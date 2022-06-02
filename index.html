@@ -50,7 +50,7 @@
                 headers: { "Content-Type": "application/json" }
             })
                 .then(response => response.json())
-                .then(data => data = data.translatedText.replace("quot;", "'"))
+                .then(data => data = data.translatedText.replace("quot;", '"'))
                 .then(data => obj.textContent=data);
         }
 
@@ -173,6 +173,11 @@
         .aw:hover {
             box-shadow: 0 0 3px 2px rgba(255, 255, 255, 0.3);
         }
+
+        .warning {
+            font-style: italic;
+            color: white;
+        }
     </style>
 </head>
 <body>
@@ -187,7 +192,8 @@
     <br>
 
     <div class="question-container"><span class="question" id="question">Lade Frage...</span></div> <br>
-    
+    <center><span class="warning">Es kann sein, dass Fragen doppelt vorkommen.</span></center>
+
     <br>
 
     <div class="button-container">
