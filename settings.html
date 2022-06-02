@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wyer</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=PT+Sans&family=Titillium+Web:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,400;1,600;1,700&display=swap" rel="stylesheet">
+    
+    <script>
+        window.onload = function() {
+            if(sessionStorage.getItem("getted") == "yes") {
+                var category = document.getElementById("category");
+                var difficulty = document.getElementById("difficulty");
+
+                category.value = sessionStorage.getItem("category");
+                difficulty.value = sessionStorage.getItem("difficulty");
+            }
+        } 
+
+        function loadHome() {
+            window.location.href = "index.html";
+        }
+
+        function loadSettings() {
+            window.location.href = "settings.html";
+        }
+
+        function saveSettings() {
+            var category = document.getElementById("category");
+            var difficulty = document.getElementById("difficulty");
+
+            var content_1 = category.value;
+            var content_2 = difficulty.value;
+
+            sessionStorage.setItem("category", content_1);
+            sessionStorage.setItem("difficulty", content_2);
+            sessionStorage.setItem("getted", "yes")
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: rgb(24, 21, 21);
+            padding: 40px;
+            font-family: 'PT Sans', sans-serif;
+        }
+
+        .logo {
+            width: 100px;
+            height: 100px;
+        }
+
+        .home {
+            color: white;
+            right: 250px;
+            font-size: 30px;
+            margin-top: 30px;
+            position: absolute;
+        }
+
+        .home:hover {
+            text-shadow: 2px 2px 4px #ffffff;
+            cursor: pointer;
+        }
+
+        .settings {
+            color: white;
+            right: 50px;
+            font-size: 30px;
+            margin-top: 30px;
+            position: absolute;
+            font-weight: bold;
+        }
+
+        .settings:hover {
+            text-shadow: 2px 2px 4px #ffffff;
+            cursor: pointer;
+        }
+        
+        .category-label {
+            color: white;
+            font-size: large;
+        }
+
+        .difficulty-label {
+            color: white;
+            font-size: large;
+        }
+
+        .category {
+            margin-left: 40px;
+            width: 230px;
+            height: 60px;
+            margin-bottom: 30px;
+            border-radius: 10px;
+        }
+
+        .difficulty {
+            margin-left: 10px;
+            width: 230px;
+            height: 60px;
+            border-radius: 10px;
+            margin-bottom: 50px;
+        }
+
+        .save {
+            background-color: lightblue;
+            width: 200px;
+            height: 60px;
+            margin-top: 20px;
+            border: none;
+            border-radius: 10px;
+            box-shadow: none;
+        }
+
+        .save:hover {
+            background-color: rgb(65, 65, 199);
+            box-shadow: 0 0 3px 2px rgba(255, 255, 255, 0.3);
+        } 
+    </style>
+</head>
+<body>
+    <div class="header">
+        <img class="logo" src="uiicon/logo_transparent_prev_ui.png" alt="">
+        <span onclick="loadHome()" class="home">Quiz</span>
+        <span onclick="loadSettings()" class="settings">Einstellungen</span>
+    </div>
+
+    <hr>
+
+    <br>
+
+    <label class="category-label" for="category">Kategorie: </label>
+
+    <select name="category" id="category" class="category">
+        <option value="18">IT</option>
+        <option value="28">Autos</option>
+        <option value="31">Anime & Mangas</option>
+        <option value="22">Geographie</option>
+    </select>
+
+    <br>
+
+    <label class="difficulty-label" for="difficulty">Schwierigkeit: </label>
+
+    <select name="difficulty" id="difficulty" class="difficulty">
+        <option value="easy">Einfach</option>
+        <option value="medium">Mittel</option>
+        <option value="hard">Schwer</option>
+    </select>
+
+    <br>
+
+    <button class="save" onclick="saveSettings()">Speichern</button>
+</body>
+</html>

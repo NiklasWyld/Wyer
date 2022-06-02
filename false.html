@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wyer</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=PT+Sans&family=Titillium+Web:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,400;1,600;1,700&display=swap" rel="stylesheet">
+    
+    <script>
+        function loadSettings() {
+            window.location.href = "settings.html";
+        }   
+
+        function loadHome() {
+            window.location.href = "index.html";
+        }
+
+        function back() {
+            window.location.href = "index.html";
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: rgb(24, 21, 21);
+            padding: 40px;
+            font-family: 'PT Sans', sans-serif;
+        }
+
+        .logo {
+            width: 100px;
+            height: 100px;
+        }
+        
+        .home {
+            color: white;
+            right: 200px;
+            font-size: 30px;
+            margin-top: 30px;
+            position: absolute;
+            font-weight: bold;
+        }
+
+        .home:hover {
+            text-shadow: 2px 2px 4px #ffffff;
+            cursor: pointer;
+        }
+
+        .settings {
+            color: white;
+            right: 50px;
+            font-size: 30px;
+            margin-top: 30px;
+            position: absolute;
+        }
+
+        .settings:hover {
+            text-shadow: 2px 2px 4px #ffffff;
+            cursor: pointer;
+        }
+        
+        .question-container {
+            text-align: center;
+            background-color: lightcoral;
+            border: white solid 1px;
+            border-radius: 10px;
+            padding: 5px;
+        }
+
+        .question {
+            text-align: center;
+            color: black;
+            font-size: 40px;
+        }
+        
+        .back {
+            width: 250px;
+            height: 70px;
+            background-color: lightcyan;
+            border: none;
+            border-radius: 10px;
+            margin-top: 300px;
+            position: absolute;
+            margin-left: auto;
+            margin-right: auto;
+            left: 0;
+            right: 0;
+        }
+
+        .back:hover {
+            background-color: lightblue;
+            box-shadow: 0 0 3px 2px rgba(255, 255, 255, 0.3);
+        }
+
+        .footer {
+            color: white;
+            position: absolute;
+            text-align: center;
+            bottom: 20px;
+            margin-left: auto;
+            margin-right: auto;
+            left: 0;
+            right: 0;
+        }
+
+        .aw {
+            color: white;
+        }
+
+        .aw:hover {
+            box-shadow: 0 0 3px 2px rgba(255, 255, 255, 0.3);
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <img class="logo" src="uiicon/logo_transparent_prev_ui.png" alt="">
+        <span onclick="loadHome()" class="home">Home</span>
+        <span onclick="loadSettings()" class="settings">Settings</span>
+    </div>
+
+    <hr>
+
+    <br>
+
+    <div class="question-container"><span class="question" id="question">Falsch!</span></div> <br>
+
+    <br>
+
+    <button class="back" onclick="back()">Nächste Frage</button>
+
+    <footer class="footer">
+        Made by <a class="aw" href="https://www.facebook.com/profile.php?id=100081445269652">Niklas Wild</a>
+    </footer>
+</body>
+</html>

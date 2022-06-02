@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wyer</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=PT+Sans&family=Titillium+Web:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,400;1,600;1,700&display=swap" rel="stylesheet">
+    
+    <script>
+        var v;
+
+        function loadSettings() {
+            window.location.href = "settings.html";
+        }   
+
+        function loadHome() {
+            window.location.href = "index.html";
+        }
+
+        function clickTrue() {
+            if(v.results[0].correct_answer == "True") {
+                window.location.href = "right.html";
+            } else {
+                window.location.href = "false.html";
+            }
+        }
+
+        function clickFalse() {
+            if(v.results[0].correct_answer == "False") {
+                window.location.href = "right.html";
+            } else {
+                window.location.href = "false.html";
+            }
+        }
+
+        function translate(question) {
+            var obj = document.getElementById("question");
+            fetch("https://libretranslate.de/translate", {
+                method: "POST",
+                body: JSON.stringify({
+                    q: question,
+                    source: "en",
+                    target: "de",
+                    format: "text"
+                }),
+                headers: { "Content-Type": "application/json" }
+            })
+                .then(response => response.json())
+                .then(data => obj.textContent=data.translatedText);
+        }
+
+        window.onload = function() {
+            if(sessionStorage.getItem("getted") === null) {
+                alert("Bitte gehe zuerst in die Einstellungen und setze die Kategorie und die Schwierigkeit!")
+            }
+            
+            var obj = document.getElementById("question");
+
+            fetch(`https://opentdb.com/api.php?amount=1&category=${sessionStorage.getItem("category")}&difficulty=${sessionStorage.getItem("difficulty")}&type=boolean`)
+                .then(response => response.json())
+                .then(data => v = data)
+                .then(() => translate(v.results[0].question))
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: rgb(24, 21, 21);
+            padding: 40px;
+            font-family: 'PT Sans', sans-serif;
+        }
+
+        .logo {
+            width: 100px;
+            height: 100px;
+        }
+        
+        .home {
+            color: white;
+            right: 250px;
+            font-size: 30px;
+            margin-top: 30px;
+            position: absolute;
+            font-weight: bold;
+        }
+
+        .home:hover {
+            text-shadow: 2px 2px 4px #ffffff;
+            cursor: pointer;
+        }
+
+        .settings {
+            color: white;
+            right: 50px;
+            font-size: 30px;
+            margin-top: 30px;
+            position: absolute;
+        }
+
+        .settings:hover {
+            text-shadow: 2px 2px 4px #ffffff;
+            cursor: pointer;
+        }
+        
+        .question-container {
+            text-align: center;
+            background-color: gray;
+            border: white solid 1px;
+            border-radius: 10px;
+            padding: 5px;
+        }
+
+        .question {
+            text-align: center;
+            font-family: 'Courier New', Courier, monospace;
+            color: white;
+            font-size: 40px;
+        }
+        
+        .button-container {
+            margin-top: 300px;
+            text-align: center;
+        }
+
+        .true {
+            background-color: lightgreen;
+            width: 250px;
+            height: 70px;
+            border: none;
+            border-radius: 10px;
+            margin-right: 50px;
+        }
+
+        .false {
+            background-color: lightcoral;
+            width: 250px;
+            height: 70px;
+            border: none;
+            border-radius: 10px;
+            margin-left: 50px;
+        }
+
+        .true:hover {
+            background-color: green;
+            box-shadow: 0 0 3px 2px rgba(255, 255, 255, 0.3);
+        }
+
+        .false:hover {
+            background-color: red;
+            box-shadow: 0 0 3px 2px rgba(255, 255, 255, 0.3);
+        }
+
+        .footer {
+            color: white;
+            position: absolute;
+            text-align: center;
+            bottom: 20px;
+            margin-left: auto;
+            margin-right: auto;
+            left: 0;
+            right: 0;
+        }
+
+        .aw {
+            color: white;
+        }
+
+        .aw:hover {
+            box-shadow: 0 0 3px 2px rgba(255, 255, 255, 0.3);
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <img class="logo" src="uiicon/logo_transparent_prev_ui.png" alt="">
+        <span onclick="loadHome()" class="home">Quiz</span>
+        <span onclick="loadSettings()" class="settings">Einstellungen</span>
+    </div>
+
+    <hr>
+
+    <br>
+
+    <div class="question-container"><span class="question" id="question">Lade Frage...</span></div> <br>
+    
+    <br>
+
+    <div class="button-container">
+        <button class="true" onclick="clickTrue()">Richtig</button> 
+        <button class="false" onclick="clickFalse()">Falsch</button>
+    </div>
+
+    <footer class="footer">
+        Programmiert von <a class="aw" href="https://www.facebook.com/profile.php?id=100081445269652">Niklas Wild</a> <br>
+        Fragen von <a class="aw" href="https://opentdb.com/">Open Travia DB</a>
+    </footer>
+</body>
+</html>
