@@ -50,8 +50,8 @@
                 headers: { "Content-Type": "application/json" }
             })
                 .then(response => response.json())
-                .then(data = data.replace(/(&quot\;)/g,"\""))
-                .then(data => obj.textContent=data.translatedText);
+                .then(data => data = data.translatedText.replace("quot;", "'"))
+                .then(data => obj.textContent=data);
         }
 
         window.onload = function() {
