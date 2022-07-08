@@ -40,7 +40,8 @@
             sessionStorage.setItem("difficulty", content_2);
             sessionStorage.setItem("getted", "yes")
 
-            alert("Gespeichert!");
+            var popup = document.getElementById("myPopup");
+            popup.classList.toggle("show");
         }
     </script>
 
@@ -109,7 +110,7 @@
             margin-bottom: 50px;
         }
 
-        .save {
+        .popup {
             background-color: lightblue;
             width: 200px;
             height: 60px;
@@ -119,10 +120,58 @@
             box-shadow: none;
         }
 
-        .save:hover {
+        .popup:hover {
             background-color: rgb(65, 65, 199);
             box-shadow: 0 0 3px 2px rgba(255, 255, 255, 0.3);
-        } 
+        }
+
+        .popup {
+            position: relative;
+            display: inline-block;
+            cursor: pointer;
+        }
+
+        .popup .popuptext {
+            visibility: hidden;
+            width: 160px;
+            background-color: #555;
+            color: #fff;
+            text-align: center;
+            border-radius: 6px;
+            padding: 8px 0;
+            position: absolute;
+            z-index: 1;
+            bottom: 125%;
+            left: 50%;
+            margin-left: -80px;
+        }
+
+        .popup .popuptext::after {
+            content: "";
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            margin-left: -5px;
+            border-width: 5px;
+            border-style: solid;
+            border-color: #555 transparent transparent transparent;
+        }
+
+        .popup .show {
+            visibility: visible;
+            -webkit-animation: fadeIn 1s;
+            animation: fadeIn 1s
+        }
+
+        @-webkit-keyframes fadeIn {
+            from {opacity: 0;}
+            to {opacity: 1;}
+        }
+
+        @keyframes fadeIn {
+            from {opacity: 0;}
+            to {opacity:1 ;}
+        }
 
         @media (min-width: 100px) and (max-width: 999px) {
             .home {
@@ -176,6 +225,8 @@
 
     <br>
 
-    <button class="save" onclick="saveSettings()">Speichern</button>
+    <button class="popup" onclick="saveSettings()">Speichern
+        <span class="popuptext" id="myPopup">Deine Auswahl wurde gespeichert!</span>
+    </button>
 </body>
 </html>
